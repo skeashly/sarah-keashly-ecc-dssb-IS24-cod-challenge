@@ -11,6 +11,7 @@
       <!-- Table rows -->
       <tr v-for="product in products" :key="product.productId">
         <td>{{ product.productId }}</td>
+        <td>{{ product.productName }}</td>
         <!-- ... other cells ... -->
       </tr>
     </table>
@@ -30,9 +31,13 @@ export default {
   },
   methods: {
     async fetchProducts() {
-      // Fetch products from the backend
-      const response = await this.$axios.get('http://localhost:3000/api/products');
-      this.products = response.data;
+      try {
+        // Fetch products from the backend
+        const response = await this.$axios.get('/api/products');
+        this.products = response.data;
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
     },
   },
 };
