@@ -26,6 +26,11 @@
         <td>{{ product.location}}</td>
         <!-- ... other cells ... -->
       </tr>
+      <tr><br></tr>
+      <tr>
+        <td>Total Product Amount:</td>
+        <td>{{ count }}</td>
+      </tr>
     </table>
   </div>
 </template>
@@ -41,6 +46,13 @@ export default {
     // Fetch data from the backend on component mount
     this.fetchProducts();
   },
+  computed: {
+
+    count(){
+      return this.products.length;
+    }
+    
+  },
   methods: {
     async fetchProducts() {
       try {
@@ -52,5 +64,6 @@ export default {
       }
     },
   },
+
 };
 </script>
