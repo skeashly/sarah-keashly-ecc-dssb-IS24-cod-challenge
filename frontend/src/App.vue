@@ -5,13 +5,25 @@
       <!-- Table headers -->
       <tr>
         <th>Product Number</th>
-        <!-- ... other headers ... -->
+        <th>Product Name</th>
+        <th>Scrum Master</th>
+        <th>Product Owner</th>
+        <th>Developer Names</th>
+        <th>Start Date</th>
+        <th>Methodology</th>
+        <th>Location</th>
       </tr>
 
       <!-- Table rows -->
       <tr v-for="product in products" :key="product.productId">
         <td>{{ product.productId }}</td>
         <td>{{ product.productName }}</td>
+        <td>{{ product.scrumMasterName}}</td>
+        <td>{{ product.productOwnerName}}</td>
+        <td>{{ product.developers[0] }}, {{ product.developers[1] }}, {{ product.developers[2] }}, {{ product.developers[3] }}, {{ product.developers[4] }}</td>
+        <td>{{ product.startDate}}</td>
+        <td>{{ product.methodology}}</td>
+        <td>{{ product.location}}</td>
         <!-- ... other cells ... -->
       </tr>
     </table>
