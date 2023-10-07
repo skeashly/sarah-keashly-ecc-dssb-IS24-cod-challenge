@@ -38,7 +38,7 @@ app.use('/api/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 // Sample data
 const products = [
   {
-    "productId": "1",
+    "productId": "c7524f22-5748-4122-babd-2d56171b810c",
     "productName": "Rustic Steel Gloves",
     "productOwnerName": "Randy Gerhold",
     "developers": [
@@ -54,7 +54,7 @@ const products = [
     "location": "https://github.com/bcgov/sequi"
   },
   {
-    "productId": "2",
+    "productId": "5339b0b0-7a5d-4b59-b16e-cbec40775acf",
     "productName": "Sleek Plastic Computer",
     "productOwnerName": "Kevin Stoltenberg",
     "developers": [
@@ -70,7 +70,7 @@ const products = [
     "location": "https://github.com/bcgov/magnam"
   },
   {
-    "productId": "3",
+    "productId": "27036f08-0998-4633-a0f4-e11d7996a492",
     "productName": "Tasty Wooden Ball",
     "productOwnerName": "Howard Corwin",
     "developers": [
@@ -86,7 +86,7 @@ const products = [
     "location": "https://github.com/bcgov/necessitatibus"
   },
   {
-    "productId": "4",
+    "productId": "2f5d178c-3f18-4b24-958d-7385af0fff38",
     "productName": "Refined Frozen Tuna",
     "productOwnerName": "Devin Larkin",
     "developers": [
