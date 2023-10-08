@@ -14,14 +14,29 @@
           <label for="productName">Product Name:</label>
           <input type="text" v-model="newProduct.productName" required>
 
-          <label for="scrumMaster">Scrum Master:</label>
-          <input type="text" v-model="newProduct.scrumMaster" required>
+          <label for="scrumMasterName">Scrum Master:</label>
+          <input type="text" v-model="newProduct.scrumMasterName" required>
 
-          <label for="productOwner">Product Owner:</label>
-          <input type="text" v-model="newProduct.productOwner" required>
+          <label for="productOwnerName">Product Owner:</label>
+          <input type="text" v-model="newProduct.productOwnerName" required>
 
-          <label for="developers">Developers (up to 5):</label>
-          <input type="text" v-model="newProduct.developers" required>
+          <!-- <label for="developers">Developers (up to 5):</label>
+          <input type="text" v-model="newProduct.developers" required> -->
+
+          <label for="developer1">Developer 1:</label>
+          <input type="text" v-model="newProduct.developers[0]" placeholder="Developer 1" required>
+
+          <label for="developer2">Developer 2:</label>
+          <input type="text" v-model="newProduct.developers[1]" placeholder="Developer 2">
+
+          <label for="developer3">Developer 3:</label>
+          <input type="text" v-model="newProduct.developers[2]" placeholder="Developer 3">
+
+          <label for="developer4">Developer 4:</label>
+          <input type="text" v-model="newProduct.developers[3]" placeholder="Developer 4">
+
+          <label for="developer5">Developer 5:</label>
+          <input type="text" v-model="newProduct.developers[4]" placeholder="Developer 5">
 
           <label for="startDate">Start Date:</label>
           <input type="date" v-model="newProduct.startDate" required>
@@ -58,7 +73,23 @@
         <td>{{ product.productName }}</td>
         <td>{{ product.scrumMasterName}}</td>
         <td>{{ product.productOwnerName}}</td>
-        <td>{{ product.developers[0] }}, {{ product.developers[1] }}, {{ product.developers[2] }}, {{ product.developers[3] }}, {{ product.developers[4] }}</td>
+        <td>
+          <tr>
+            <td>{{ product.developers[0] }}</td>
+          </tr>
+          <tr>
+            <td>{{ product.developers[1] }}</td>
+          </tr>
+          <tr>
+            <td>{{ product.developers[2] }}</td>
+          </tr>
+          <tr>
+            <td>{{ product.developers[3] }}</td>
+          </tr>
+          <tr>
+            <td>{{ product.developers[4] }}</td>
+          </tr>
+        </td>
         <td>{{ product.startDate}}</td>
         <td>{{ product.methodology}}</td>
         <td>{{ product.location}}</td>
@@ -80,9 +111,9 @@ export default {
       isModalOpen: false,
       newProduct: {
         productName: '',
-        scrumMaster: '',
-        productOwner: '',
-        developers: '',
+        scrumMasterName: '',
+        productOwnerName: '',
+        developers: [],
         startDate: '',
         methodology: 'Agile',
       },
@@ -117,6 +148,15 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     },
+
+    addDeveloper() {
+      // Assuming you have an input for the new developer's name
+      const newDeveloperName = ["developer1", "developer2", "developer3","developer4","developer5"]; // Replace with the actual input value
+
+      // Push the new developer name into the array
+      this.newProduct.developers.push(newDeveloperName);
+    },
+
     addProduct() {
       // Add validation logic here if needed
 
@@ -134,11 +174,12 @@ export default {
         productName: '',
         scrumMaster: '',
         productOwner: '',
-        developers: '',
+        developers: [],
         startDate: '',
         methodology: 'Agile',
       };
     },
+    
   },
 
 };
