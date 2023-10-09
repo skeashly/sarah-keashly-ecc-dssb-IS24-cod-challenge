@@ -108,6 +108,7 @@ export default {
     return {
       isModalOpen: false,
       newProduct: {
+        productId: Math.random().toString(36).substr(2, 9),
         productName: '',
         scrumMasterName: '',
         productOwnerName: '',
