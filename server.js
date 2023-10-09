@@ -55,14 +55,6 @@ app.get('/api/products', (req, res) => {
   res.json(products);
 });
 
-// // Add a new product
-// app.post('/api/products', (req, res) => {
-//   const newProduct = req.body;
-//   // Add validation and generate product number here
-//   products.push(newProduct);
-//   saveDataToFile();
-//   res.status(201).json(newProduct);
-// });
 
 // Add a new product
 app.post('/api/products', (req, res) => {
@@ -100,10 +92,21 @@ app.put('/api/products/:productId', (req, res) => {
   }
 });
 
+// Delete a product // Tested via curl - curl -X DELETE http://localhost:3000/api/products/{productId}
+app.delete('/api/products/:productId', (req, res) => {
+  const productId = req.params.productId;
+  // Find the index of the product
+  const index = products.findIndex(p => p.productId === productId);
+  if (index !== -1) {
+    // Remove the product from the array
+    products.splice(index, 1);
+    fs.writeFileSync('data.json', JSON.stringify(products, null, 2), 'utf-8');
+    res.status(200).send('Product deleted');
+  } else {
+    res.status(404).send('Product not found');
+  }
+});
 
-// function saveDataToFile() {
-//   fs.writeFileSync('data.json', JSON.stringify(products, null, 2), 'utf-8');
-// }
 
 // Load data from file on server start
 function loadDataFromFile() {

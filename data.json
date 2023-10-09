@@ -62,16 +62,5 @@
     "startDate": "2022-10-25",
     "methodology": "Agile",
     "location": "https://github.com/bcgov/inventore"
-  },
-  {
-    "productName": "Chocolate",
-    "scrumMasterName": "Llorin",
-    "productOwnerName": "Sarah",
-    "developers": [
-      "Sarah",
-      "Same"
-    ],
-    "startDate": "2023-10-09",
-    "methodology": "Agile"
   }
 ]
