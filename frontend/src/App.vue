@@ -4,7 +4,7 @@
     <!-- Button to open the modal -->
     <button @click="openModal">Add Product</button>
 
-    <!-- Modal form -->
+    <!-- Modal form for adding new product -->
     <div v-if="isModalOpen" class="modal">
       <div class="modal-content">
         <span class="close" @click="closeModal">&times;</span>
@@ -19,9 +19,6 @@
 
           <label for="productOwnerName">Product Owner:</label>
           <input type="text" v-model="newProduct.productOwnerName" required>
-
-          <!-- <label for="developers">Developers (up to 5):</label>
-          <input type="text" v-model="newProduct.developers" required> -->
 
           <label for="developer1">Developer 1:</label>
           <input type="text" v-model="newProduct.developers[0]" placeholder="Developer 1" required>
@@ -51,7 +48,6 @@
         </form>
       </div>
     </div>
-    
 
     <h1>Product List</h1>
     <table>
@@ -65,6 +61,7 @@
         <th>Start Date</th>
         <th>Methodology</th>
         <th>Location</th>
+        <th>Edit</th>
       </tr>
 
       <!-- Table rows -->
@@ -93,6 +90,7 @@
         <td>{{ product.startDate}}</td>
         <td>{{ product.methodology}}</td>
         <td>{{ product.location}}</td>
+        <td><button @click="editProduct">Edit</button></td>
         <!-- ... other cells ... -->
       </tr>
       <tr><br></tr>
@@ -101,7 +99,22 @@
         <td>{{ count }}</td>
       </tr>
     </table>
-  </div>
+   <!--  <div v-if="isEditMode">
+      <h2>Edit Product</h2>
+     
+      <form @submit.prevent="saveEdit">
+        <label for="productName">Product Name:</label>
+        <input type="text" v-model="editedProduct.productName" required>
+
+        <label for="scrumMasterName">Scrum Master:</label>
+        <input type="text" v-model="editedProduct.scrumMasterName" required>
+        
+      </form>
+
+
+      <button type="submit">Save</button>
+    </div>
+  </div> -->
 </template>
 
 <script>
@@ -117,6 +130,8 @@ export default {
         startDate: '',
         methodology: 'Agile',
       },
+      // isEditMode: false,
+      // editedProduct: null,
       products: [],
     };
   },
@@ -150,8 +165,7 @@ export default {
     },
 
     addDeveloper() {
-      // Assuming you have an input for the new developer's name
-      const newDeveloperName = ["developer1", "developer2", "developer3","developer4","developer5"]; // Replace with the actual input value
+      const newDeveloperName = ["developer1", "developer2", "developer3","developer4","developer5"]; 
 
       // Push the new developer name into the array
       this.newProduct.developers.push(newDeveloperName);
@@ -179,6 +193,23 @@ export default {
         methodology: 'Agile',
       };
     },
+
+    // editProduct(product) {
+    //   console.log("hello")
+    //   this.isEditMode = true;
+    //   this.editedProduct = { ...product }; // Clone the product to avoid direct mutation
+    //   // console.log(this.editedProduct)
+    // },
+
+    // saveEdit() {
+    //   // Update the existing product in the list
+    //   const index = this.products.findIndex(p => p.productId === this.editedProduct.productId);
+    //   if (index !== -1) {
+    //     this.$set(this.products, index, this.editedProduct);
+    //   }
+    //   this.isEditMode = false;
+    //   this.editedProduct = null;
+    // },
     
   },
 
