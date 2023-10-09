@@ -90,7 +90,7 @@
         <td>{{ product.startDate}}</td>
         <td>{{ product.methodology}}</td>
         <td>{{ product.location}}</td>
-        <td><button @click="editProduct">Edit</button></td>
+        <!-- <td><button @click="editProduct">Edit</button></td> -->
         <!-- ... other cells ... -->
       </tr>
       <tr><br></tr>
@@ -99,22 +99,7 @@
         <td>{{ count }}</td>
       </tr>
     </table>
-   <!--  <div v-if="isEditMode">
-      <h2>Edit Product</h2>
-     
-      <form @submit.prevent="saveEdit">
-        <label for="productName">Product Name:</label>
-        <input type="text" v-model="editedProduct.productName" required>
-
-        <label for="scrumMasterName">Scrum Master:</label>
-        <input type="text" v-model="editedProduct.scrumMasterName" required>
-        
-      </form>
-
-
-      <button type="submit">Save</button>
-    </div>
-  </div> -->
+  </div> 
 </template>
 
 <script>
@@ -130,8 +115,6 @@ export default {
         startDate: '',
         methodology: 'Agile',
       },
-      // isEditMode: false,
-      // editedProduct: null,
       products: [],
     };
   },
@@ -158,6 +141,7 @@ export default {
     },
 
     openModal() {
+      console.log("open modal")
       this.isModalOpen = true;
     },
     closeModal() {
@@ -172,13 +156,13 @@ export default {
     },
 
     addProduct() {
-      // Add validation logic here if needed
+  // Add validation logic here if needed
 
-      // Add the new product to the list
-      this.products.push({
-        productId: Math.random().toString(36).substr(2, 9), // Generate a random ID (you might want to use a more robust method)
-        ...this.newProduct,
-      });
+  // Make a POST request to add the new product to the server
+  this.$axios.post('/api/products', this.newProduct)
+    .then(response => {
+      // Add the new product to the local array
+      this.products.push(response.data);
 
       // Close the modal
       this.closeModal();
@@ -186,30 +170,17 @@ export default {
       // Optionally, you can clear the form fields
       this.newProduct = {
         productName: '',
-        scrumMaster: '',
-        productOwner: '',
+        scrumMasterName: '',
+        productOwnerName: '',
         developers: [],
         startDate: '',
         methodology: 'Agile',
       };
-    },
-
-    // editProduct(product) {
-    //   console.log("hello")
-    //   this.isEditMode = true;
-    //   this.editedProduct = { ...product }; // Clone the product to avoid direct mutation
-    //   // console.log(this.editedProduct)
-    // },
-
-    // saveEdit() {
-    //   // Update the existing product in the list
-    //   const index = this.products.findIndex(p => p.productId === this.editedProduct.productId);
-    //   if (index !== -1) {
-    //     this.$set(this.products, index, this.editedProduct);
-    //   }
-    //   this.isEditMode = false;
-    //   this.editedProduct = null;
-    // },
+    })
+    .catch(error => {
+      console.error('Error adding product:', error);
+    });
+},
     
   },
 
