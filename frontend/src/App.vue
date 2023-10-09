@@ -140,6 +140,9 @@
             <option value="Waterfall">Waterfall</option>
           </select>
 
+          <label for="location">location:</label>
+          <input type="link" v-model="editedProduct.location" >
+
           <button type="submit">Save</button>
         </form>
       </div>
@@ -170,6 +173,7 @@ export default {
         developers: [],
         startDate: '',
         methodology: 'Agile',
+        location: '',
       },
       products: [],
     };
