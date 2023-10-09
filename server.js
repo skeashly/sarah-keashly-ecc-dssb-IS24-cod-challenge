@@ -76,21 +76,6 @@ app.post('/api/products', (req, res) => {
 });
 
 // Edit a product
-// app.put('/api/products/:productId', (req, res) => {
-//   const productId = req.params.productId;
-//   const updatedProduct = req.body;
-//   // Add validation and update logic here
-//   const index = products.findIndex(p => p.productId === productId);
-//   if (index !== -1) {
-//     products[index] = updatedProduct;
-//     saveDataToFile();
-//     res.status(200).json(updatedProduct);
-//   } else {
-//     res.status(404).send('Product not found');
-//   }
-// });
-
-// Edit a product
 app.put('/api/products/:productId', (req, res) => {
   const productId = req.params.productId;
   const updatedProduct = req.body;
@@ -102,18 +87,23 @@ app.put('/api/products/:productId', (req, res) => {
     // Update the product
     products[index] = updatedProduct;
 
-    // Save updated data to the JSON file
-    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-    res.status(200).json(updatedProduct);
+    try {
+      // Save updated data to the JSON file
+      fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      console.error('Error writing to file:', error);
+      res.status(500).send('Internal Server Error');
+    }
   } else {
     res.status(404).send('Product not found');
   }
 });
 
-function saveDataToFile() {
-  fs.writeFileSync('data.json', JSON.stringify(products, null, 2), 'utf-8');
-}
+
+// function saveDataToFile() {
+//   fs.writeFileSync('data.json', JSON.stringify(products, null, 2), 'utf-8');
+// }
 
 // Load data from file on server start
 function loadDataFromFile() {
