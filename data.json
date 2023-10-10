@@ -16,51 +16,16 @@
     "location": "https://github.com/bcgov/sequi"
   },
   {
-    "productId": "5339b0b0-7a5d-4b59-b16e-cbec40775acf",
-    "productName": "Sleek Plastic Computer",
-    "productOwnerName": "Kevin Stoltenberg",
+    "productId": "c7524d322-5448-4132-babd32d56171b811c",
+    "productName": "Gloves",
+    "scrumMasterName": "Llorin",
+    "productOwnerName": "Sarah",
     "developers": [
-      "Jill Windler",
-      "Emmett Legros",
-      "Omar Pfeffer DVM",
-      "Miranda Rohan",
-      "Miss Eva Kassulke"
+      "Brendan",
+      "Midori"
     ],
-    "scrumMasterName": "Devin Jacobs",
-    "startDate": "2023-01-09",
+    "startDate": "",
     "methodology": "Waterfall",
-    "location": "https://github.com/bcgov/magnam"
-  },
-  {
-    "productId": "27036f08-0998-4633-a0f4-e11d7996a492",
-    "productName": "Tasty Wooden Ball",
-    "productOwnerName": "Howard Corwin",
-    "developers": [
-      "Nathaniel Jacobi Jr.",
-      "Gilbert Littel",
-      "Sabrina Jones",
-      "Noah Schultz",
-      "Michelle Schowalter"
-    ],
-    "scrumMasterName": "Mr. Freda Ratke",
-    "startDate": "2023-03-10",
-    "methodology": "Waterfall",
-    "location": "https://github.com/bcgov/necessitatibus"
-  },
-  {
-    "productId": "2f5d178c-3f18-4b24-958d-7385af0fff38",
-    "productName": "Refined Frozen Tuna",
-    "productOwnerName": "Devin Larkin",
-    "developers": [
-      "Raquel Johns",
-      "Terrence Ernser",
-      "Judith Bernhard",
-      "Jeffery Conn",
-      "Antoinette Borer"
-    ],
-    "scrumMasterName": "Eric Kozey",
-    "startDate": "2022-10-25",
-    "methodology": "Agile",
-    "location": "https://github.com/bcgov/inventore"
+    "location": "https://github.com/bcgov/sequi\t"
   }
 ]
