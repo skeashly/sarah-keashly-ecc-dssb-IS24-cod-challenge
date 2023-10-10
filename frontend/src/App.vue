@@ -62,60 +62,23 @@
       </tr>
     </table>
 
-    <!-- Modal form for editing a product -->
-    <div v-if="isEditModalOpen" class="modal">
-      <div class="modal-content">
-        <span class="close" @click="closeModal">&times;</span>
-        <h2>Edit Product</h2>
-        <!-- Form for editing a product -->
-        <form @submit.prevent="saveEdit">
-          <label for="productName">Product Name:</label>
-          <input type="text" v-model="editedProduct.productName">
+  
+    <!-- Modal form for editing a product --> 
 
-          <label for="scrumMasterName">Scrum Master:</label>
-          <input type="text" v-model="editedProduct.scrumMasterName">
-
-          <label for="productOwnerName">Product Owner:</label>
-          <input type="text" v-model="editedProduct.productOwnerName" >
-
-          <label for="developer1">Developer 1:</label>
-          <input type="text" v-model="editedProduct.developers[0]" placeholder="Developer 1">
-
-          <label for="developer2">Developer 2:</label>
-          <input type="text" v-model="editedProduct.developers[1]" placeholder="Developer 2">
-
-          <label for="developer3">Developer 3:</label>
-          <input type="text" v-model="editedProduct.developers[2]" placeholder="Developer 3">
-
-          <label for="developer4">Developer 4:</label>
-          <input type="text" v-model="editedProduct.developers[3]" placeholder="Developer 4">
-
-          <label for="developer5">Developer 5:</label>
-          <input type="text" v-model="editedProduct.developers[4]" placeholder="Developer 5">
-
-          <label for="startDate">Start Date:</label>
-          <input type="date" v-model="editedProduct.startDate" >
-
-          <label for="methodology">Methodology:</label>
-          <select v-model="editedProduct.methodology" >
-            <option value="Agile">Agile</option>
-            <option value="Waterfall">Waterfall</option>
-          </select>
-
-          <label for="location">location:</label>
-          <input type="link" v-model="editedProduct.location" >
-
-          <button type="submit">Save</button>
-        </form>
-      </div>
-    </div>
-  </div> 
+    <edit-product-modal
+    :is-open="isEditModalOpen"
+    :save-edit="saveEdit"
+    :close-modal="closeModal"
+    :edited-product="editedProduct"
+  ></edit-product-modal>
+  </div>
 </template>
 
 <script>
 import AddProductModal from './components/AddProductModal.vue';
+import EditProductModal from './components/EditProductModal.vue'
 export default {
-  components: { AddProductModal },
+  components: { AddProductModal, EditProductModal },
   data() {
     return {
       isModalOpen: false,
@@ -168,9 +131,11 @@ export default {
       this.isModalOpen = true;
     },
     openEditModal(productId) {
+      console.log(productId)
       // Find the product in the array based on productId
       const productToEdit = this.products.find(product => product.productId === productId);
 
+      console.log("producttoEdit",productToEdit);
       // Set the editedProduct to the found product
       this.editedProduct = { ...productToEdit };
 
@@ -215,15 +180,16 @@ export default {
       });
     },
 
-    saveEdit(){
-      console.log("saveEdit");
+    saveEdit(editedProduct){
+
+      console.log("editedProduct",editedProduct);
       // Add validation logic here if needed
 
       // Make a PUT request to edit the product on the server
-      this.$axios.put(`/api/products/${this.editedProduct.productId}`, this.editedProduct)
+      this.$axios.put(`/api/products/${this.editedProduct.productId}`, editedProduct)
       .then(response => {
       // Update the local array with the updated product
-      const index = this.products.findIndex(p => p.productId === this.editedProduct.productId);
+      const index = this.products.findIndex(p => p.productId === editedProduct.productId);
 
       if (index !== -1) {
         this.$set(this.products, index, response.data);
@@ -238,6 +204,7 @@ export default {
         console.error('Error editing product:', error);
       });
     },
+
     
 
     
