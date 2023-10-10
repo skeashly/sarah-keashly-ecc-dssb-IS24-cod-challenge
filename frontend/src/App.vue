@@ -4,50 +4,12 @@
     <!-- Button to open the modal -->
     <button @click="openModal">Add Product</button>
 
-        <!-- Modal form for adding new product -->
-        <div v-if="isModalOpen" class="modal">
-      <div class="modal-content">
-        <span class="close" @click="closeModal">&times;</span>
-
-        <!-- Form for adding a new product -->
-        <form @submit.prevent="addProduct">
-          <label for="productName">Product Name:</label>
-          <input type="text" v-model="newProduct.productName" required>
-
-          <label for="scrumMasterName">Scrum Master:</label>
-          <input type="text" v-model="newProduct.scrumMasterName" required>
-
-          <label for="productOwnerName">Product Owner:</label>
-          <input type="text" v-model="newProduct.productOwnerName" required>
-
-          <label for="developer1">Developer 1:</label>
-          <input type="text" v-model="newProduct.developers[0]" placeholder="Developer 1" required>
-
-          <label for="developer2">Developer 2:</label>
-          <input type="text" v-model="newProduct.developers[1]" placeholder="Developer 2">
-
-          <label for="developer3">Developer 3:</label>
-          <input type="text" v-model="newProduct.developers[2]" placeholder="Developer 3">
-
-          <label for="developer4">Developer 4:</label>
-          <input type="text" v-model="newProduct.developers[3]" placeholder="Developer 4">
-
-          <label for="developer5">Developer 5:</label>
-          <input type="text" v-model="newProduct.developers[4]" placeholder="Developer 5">
-
-          <label for="startDate">Start Date:</label>
-          <input type="date" v-model="newProduct.startDate" required>
-
-          <label for="methodology">Methodology:</label>
-          <select v-model="newProduct.methodology" required>
-            <option value="Agile">Agile</option>
-            <option value="Waterfall">Waterfall</option>
-          </select>
-
-          <button type="submit">Add Product</button>
-        </form>
-      </div>
-    </div>
+    <add-product-modal
+      :is-open="isModalOpen"
+      :add-product="addProduct"
+      :close-modal="closeModal"
+      :new-product="newProduct"
+    ></add-product-modal>
 
     <h1>Product List</h1>
     <table>
@@ -151,7 +113,9 @@
 </template>
 
 <script>
+import AddProductModal from './components/AddProductModal.vue';
 export default {
+  components: { AddProductModal },
   data() {
     return {
       isModalOpen: false,
@@ -201,12 +165,9 @@ export default {
     },
 
     openModal() {
-      console.log("open modal")
       this.isModalOpen = true;
     },
     openEditModal(productId) {
-      console.log("open edit modal")
-
       // Find the product in the array based on productId
       const productToEdit = this.products.find(product => product.productId === productId);
 
@@ -226,11 +187,12 @@ export default {
       this.newProduct.developers.push(newDeveloperName);
     },
 
-    addProduct() {
+    // newProduct being emitted from AddProductModal component
+    addProduct(newProduct) {
     // Add validation logic here if needed
 
     // Make a POST request to add the new product to the server
-    this.$axios.post('/api/products', this.newProduct)
+    this.$axios.post('/api/products', newProduct)
       .then(response => {
         // Add the new product to the local array
         this.products.push(response.data);
