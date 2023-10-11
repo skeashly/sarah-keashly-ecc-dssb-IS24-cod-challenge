@@ -1,10 +1,10 @@
 // test/api.test.js
 
-//npm test to run testing suite
+//'npm test' to run testing suite
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../server'); // Adjust the path based on your project structure
+const app = require('../server'); 
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -39,10 +39,10 @@ describe('API Endpoints', () => {
   describe('POST /api/products', () => {
     it('should add a new product and return status 201', (done) => {
       const newProduct = {
-        // Provide data for your new product
-          "productId": "c7524f22-5748-4122-babd-2d56171b810c",
-          "productName": "Rustic Steel Gloves",
-          "productOwnerName": "Randy Gerhold",
+        //After running this once, please update at least the productId so that there are no duplicates
+          "productId": "c7524f22-5748-4122-babd-2d12341b810c",
+          "productName": "iphone charger",
+          "productOwnerName": "Stewie Griffon",
           "developers": [
             "Mrs. Madeline Littel",
             "Dr. Mercedes Howe",
@@ -50,7 +50,7 @@ describe('API Endpoints', () => {
             "Jesus Lebsack",
             "Julius Anderson"
           ],
-          "scrumMasterName": "Guadalupe Morissette",
+          "scrumMasterName": "Peter Griffon",
           "startDate": "2023-01-16",
           "methodology": "Waterfall",
       };
@@ -108,6 +108,7 @@ describe('API Endpoints', () => {
 
     it('should delete a product and return status 200', (done) => {
       const existingProduct = {
+        //After running this, grab another product from data.json file to delete
         "productId": "532cf829-96c0-46ad-b780-78e498d2010b",
         "productName": "Rustic Rubber Sausages",
         "productOwnerName": "Kristy Koepp",
