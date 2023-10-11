@@ -1,3 +1,4 @@
+//node generateData.js
 const faker = require('faker');
 
 const generateRandomProduct = () => {
@@ -23,4 +24,7 @@ const generateRandomProducts = (count) => {
   return products;
 };
 
-module.exports = generateRandomProducts(40);
+const randomProducts = generateRandomProducts(40);
+
+console.log(JSON.stringify(randomProducts, null, 2));
+
