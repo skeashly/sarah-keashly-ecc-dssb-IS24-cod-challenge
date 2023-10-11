@@ -1,7 +1,7 @@
 <template>
       <div v-if="isOpen" class="modal">
-      <div class="modal-content">
-        <span class="close" @click="closeModal">&times;</span>
+      <div id='editProductModal' class="modal-content">
+        <span id='editProductClose' class="close" @click="this.closeModal">&times;</span>
         <h2>Edit Product</h2>
         <!-- Form for editing a product -->
         <form @submit.prevent="submitForm">
@@ -14,19 +14,15 @@
           <label for="productOwnerName">Product Owner:</label>
           <input type="text" v-model="formData.productOwnerName" >
 
-          <label for="developer1">Developer 1:</label>
+          <label for="developer1">Developers:</label>
           <input type="text" v-model="formData.developers[0]" placeholder="Developer 1">
 
-          <label for="developer2">Developer 2:</label>
           <input type="text" v-model="formData.developers[1]" placeholder="Developer 2">
 
-          <label for="developer3">Developer 3:</label>
           <input type="text" v-model="formData.developers[2]" placeholder="Developer 3">
 
-          <label for="developer4">Developer 4:</label>
           <input type="text" v-model="formData.developers[3]" placeholder="Developer 4">
 
-          <label for="developer5">Developer 5:</label>
           <input type="text" v-model="formData.developers[4]" placeholder="Developer 5">
 
           <label for="startDate">Start Date:</label>
@@ -83,6 +79,52 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+};
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; 
+}
+
+h2{
+  font-family: Helvetica, sans-serif;
+}
+
+form{
+  font-family: Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 5px;
+}
+
+input, select{
+  padding-top:2px;
+  margin: 6px;
+}
+
+#editProductModal{
+  background-color: rgb(207, 211, 211);
+    padding: 22px;
+    border-radius: 10px;
+}
+
+#addProductClose{
+padding-bottom: 23px;
+}
 
 </style>

@@ -24,8 +24,19 @@
       "Brendan",
       "Midori"
     ],
-    "startDate": "",
+    "startDate": "2023-10-09",
     "methodology": "Waterfall",
     "location": "https://github.com/bcgov/sequi\t"
+  },
+  {
+    "productId": "cuyalk3yu",
+    "productName": "Chocolate",
+    "scrumMasterName": "Charlie",
+    "productOwnerName": "Sarah",
+    "developers": [
+      "Llorin"
+    ],
+    "startDate": "2023-10-10",
+    "methodology": "Waterfall"
   }
 ]
