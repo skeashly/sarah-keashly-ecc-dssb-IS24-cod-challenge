@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     
+  <!-- Modal form for adding a product --> 
     <add-product-modal
     :is-open="isModalOpen"
     :add-product="addProduct"
@@ -128,6 +129,7 @@ export default {
     openModal() {
       this.isModalOpen = true;
     },
+
     openEditModal(productId) {
       // Find the product in the array based on productId
       const productToEdit = this.products.find(product => product.productId === productId);
@@ -143,7 +145,6 @@ export default {
       this.isEditModalOpen = false;
     },
     
-
     addDeveloper() {
       const newDeveloperName = ["developer1", "developer2", "developer3","developer4","developer5"]; 
 
@@ -151,11 +152,8 @@ export default {
       this.newProduct.developers.push(newDeveloperName);
     },
 
-    // newProduct being emitted from AddProductModal component
     addProduct(newProduct) {
-    // Add validation logic here if needed
-
-    // Make a POST request to add the new product to the server
+    // POST request to add the new product to the server
     this.$axios.post('/api/products', newProduct)
       .then(response => {
         // Add the new product to the local array
@@ -164,7 +162,7 @@ export default {
         // Close the modal
         this.closeModal();
 
-        // Optionally, you can clear the form fields
+        // Clear the form fields
         this.newProduct = {
           productName: '',
           scrumMasterName: '',
@@ -180,9 +178,6 @@ export default {
     },
 
     saveEdit(editedProduct){
-
-      console.log("editedProduct",editedProduct);
-      // Add validation logic here if needed
 
       // Make a PUT request to edit the product on the server
       this.$axios.put(`/api/products/${this.editedProduct.productId}`, editedProduct)
@@ -209,11 +204,11 @@ export default {
 </script>
 
 <style>
-  #app {
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-  }
+#app {
+ width: 100vw;
+ height: 100vh;
+ z-index: -1;
+}
 
 body {
   margin: 0;
@@ -246,7 +241,6 @@ button {
   background-color: rgb(104, 223, 104);
   font-family: Helvetica, sans-serif;
   color: grey;
-
 }
 
 button:hover{
@@ -256,7 +250,5 @@ button:hover{
 #addProductBtn {
   margin: 10px;
 }
-
-
 
 </style>

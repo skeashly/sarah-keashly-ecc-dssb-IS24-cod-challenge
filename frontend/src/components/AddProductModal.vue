@@ -17,16 +17,12 @@
           <label for="developer1">Developers:</label>
           <input type="text" v-model="formData.developers[0]" placeholder="Developer 1" required>
 
-          <!-- <label for="developer2">Developer 2:</label> -->
           <input type="text" v-model="formData.developers[1]" placeholder="Developer 2">
 
-          <!-- <label for="developer3">Developer 3:</label> -->
           <input type="text" v-model="formData.developers[2]" placeholder="Developer 3">
 
-          <!-- <label for="developer4">Developer 4:</label> -->
           <input type="text" v-model="formData.developers[3]" placeholder="Developer 4">
 
-          <!-- <label for="developer5">Developer 5:</label> -->
           <input type="text" v-model="formData.developers[4]" placeholder="Developer 5">
 
           <label for="startDate">Start Date:</label>
@@ -73,7 +69,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;

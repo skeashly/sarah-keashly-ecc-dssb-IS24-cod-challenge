@@ -47,9 +47,9 @@
 export default {
   props:{
     isOpen: Boolean,
-    saveEdit: Function, // Pass the saveEdit method as a prop
-    closeModal: Function, // Pass the closeModal method as a prop
-    editedProduct: Object, // Pass the editedProduct object as a prop
+    saveEdit: Function, 
+    closeModal: Function, 
+    editedProduct: Object, 
   },
   data() {
     return {
@@ -86,7 +86,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   align-items: center;
   justify-content: center;
