@@ -34,6 +34,7 @@ const swaggerSpec = swaggerJSDoc(options);
 app.use('/api/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 
+
 // Read the products from the JSON file
 const productsFilePath = './data.json';
 let products = [];
@@ -50,13 +51,94 @@ app.get('/api/health', (req, res) => {
   res.status(200).send('API is healthy');
 });
 
+
 // Get all products
+/**
+ * @swagger
+ * /api/products:
+ *   get:
+ *     summary: Get all products
+ *     description: Returns a list of all products.
+ *     responses:
+ *       200:
+ *         description: Successful operation
+ *         content:
+ *           application/json:
+ *             example:
+ *               - productId: 1
+ *                 productName: "Product 1"
+ *                 productOwnerName: "Name"
+ *                 developers:
+ *                   - "Developer1"
+ *                   - "Developer2"
+ *                   - "Developer3"
+ *                   - "Developer4"
+ *                   - "Developer5"
+ *                 scrumMasterName: "Name"
+ *                 startDate: "2023-01-16"
+ *                 methodology: "Waterfall"
+ *               - productId: 2
+ *                 productName: "Product 2"
+ *                 productOwnerName: "Name"
+ *                 developers:
+ *                   - "Developer1"
+ *                   - "Developer2"
+ *                   - "Developer3"
+ *                   - "Developer4"
+ *                   - "Developer5"
+ *                 scrumMasterName: "Name"
+ *                 startDate: "2023-01-16"
+ *                 methodology: "Agile"
+ */
 app.get('/api/products', (req, res) => {
   res.json(products);
 });
 
 
+
 // Add a new product
+/**
+ * @swagger
+ * /api/products:
+ *   post:
+ *     summary: Create a new product
+ *     description: Add a new product to the server
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           example:
+ *               - productId: 3
+ *                 productName: "Product 3"
+ *                 productOwnerName: "Name"
+ *                 developers:
+ *                   - "Developer1"
+ *                   - "Developer2"
+ *                   - "Developer3"
+ *                   - "Developer4"
+ *                   - "Developer5"
+ *                 scrumMasterName: "Name"
+ *                 startDate: "2023-01-16"
+ *                 methodology: "Agile"
+ *     responses:
+ *       '201':
+ *         description: The newly created product
+ *         content:
+ *           application/json:
+ *             example:
+ *               - productId: 3
+ *                 productName: "Product 3"
+ *                 productOwnerName: "Name"
+ *                 developers:
+ *                   - "Developer1"
+ *                   - "Developer2"
+ *                   - "Developer3"
+ *                   - "Developer4"
+ *                   - "Developer5"
+ *                 scrumMasterName: "Name"
+ *                 startDate: "2023-01-16"
+ *                 methodology: "Agile"
+ */
 app.post('/api/products', (req, res) => {
   const newProduct = req.body;
   products.push(newProduct);
@@ -68,6 +150,57 @@ app.post('/api/products', (req, res) => {
 });
 
 // Edit a product
+/**
+ * @swagger
+ * /api/products/{productId}:
+ *   put:
+ *     summary: Edit a product
+ *     description: Edit a product on the server
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: ID of the product to edit
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           example:
+ *             productId: 3
+ *             productName: "Product 3"
+ *             productOwnerName: "Name"
+ *             developers:
+ *               - "Developer1"
+ *               - "Developer2"
+ *               - "Developer3"
+ *               - "Developer4"
+ *               - "Developer5"
+ *             scrumMasterName: "Name"
+ *             startDate: "2023-01-16"
+ *             methodology: "Agile"
+ *     responses:
+ *       '200':
+ *         description: The updated product
+ *         content:
+ *           application/json:
+ *             example:
+ *               productId: 3
+ *               productName: "Product 3"
+ *               productOwnerName: "Name"
+ *               developers:
+ *                 - "Developer1"
+ *                 - "Developer2"
+ *                 - "Developer3"
+ *                 - "Developer4"
+ *                 - "Developer5"
+ *               scrumMasterName: "Name"
+ *               startDate: "2023-01-16"
+ *               methodology: "Agile"
+ *       '404':
+ *         description: Product not found
+ */
 app.put('/api/products/:productId', (req, res) => {
   const productId = req.params.productId;
   const updatedProduct = req.body;
@@ -93,6 +226,42 @@ app.put('/api/products/:productId', (req, res) => {
 });
 
 // Delete a product // Tested via curl - curl -X DELETE http://localhost:3000/api/products/{productId}
+/**
+ * @swagger
+ * /api/products/{productId}:
+ *   delete:
+ *     summary: Delete a product
+ *     description: Delete a product on the server
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         required: true
+ *         description: ID of the product to delete
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           example:
+ *             productId: 3
+ *             productName: "Product 3"
+ *             productOwnerName: "Name"
+ *             developers:
+ *               - "Developer1"
+ *               - "Developer2"
+ *               - "Developer3"
+ *               - "Developer4"
+ *               - "Developer5"
+ *             scrumMasterName: "Name"
+ *             startDate: "2023-01-16"
+ *             methodology: "Agile"
+ *     responses:
+ *       '200':
+ *         description: Product deleted
+ *       '404':
+ *         description: Product not found
+ */
 app.delete('/api/products/:productId', (req, res) => {
   const productId = req.params.productId;
   // Find the index of the product
