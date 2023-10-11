@@ -51,9 +51,10 @@ I was unable to get to the two bonus stories, however would have loved to try to
 Before you begin, ensure you have the following installed:
 
 Node.js
+
 Vue CLI
 
-## Open a new Change to the frontend directory:
+## Open a new Terminal and navigate to the frontend directory:
 
 cd frontend
 
@@ -81,16 +82,26 @@ npm run lint
 
 ## Dependencies
 axios: Promise-based HTTP client for the browser and Node.js.
+
 core-js: Modular standard library for JavaScript. Includes polyfills for ECMAScript up to 2023.
+
 swagger-jsdoc: Generates Swagger/OpenAPI documentation from JSDoc comments.
+
 swagger-ui-express: Swagger UI Express middleware for serving Swagger UI.
 
 ## Development Dependencies
 @babel/core: Babel compiler core.
+
 @babel/eslint-parser: A parser that allows Babel to be used as an ESLint parser.
+
 @vue/cli-plugin-babel: Vue CLI plugin for Babel.
+
 @vue/cli-plugin-eslint: Vue CLI plugin for ESLint.
+
 @vue/cli-service: Vue CLI service for building and serving the app.
+
 eslint: Pluggable JavaScript linter.
+
 eslint-plugin-vue: Official ESLint plugin for Vue.js.
+
 vue-template-compiler: Template compiler for Vue.js.
