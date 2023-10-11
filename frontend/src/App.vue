@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-
-    <!-- Button to open the modal -->
-    <button @click="openModal">Add Product</button>
-
+    
     <add-product-modal
-      :is-open="isModalOpen"
-      :add-product="addProduct"
-      :close-modal="closeModal"
-      :new-product="newProduct"
+    :is-open="isModalOpen"
+    :add-product="addProduct"
+    :close-modal="closeModal"
+    :new-product="newProduct"
     ></add-product-modal>
-
+    
+    
     <h1>Product List</h1>
+    <!-- Button to open the modal -->
+    <button @click="openModal" id="addProductBtn">Add Product</button>
     <table>
       <!-- Table headers -->
       <tr>
@@ -34,37 +34,35 @@
         <td>{{ product.productOwnerName}}</td>
         <td>
           <tr>
-            <td>{{ product.developers[0] }}</td>
+            {{ product.developers[0] }}
           </tr>
           <tr>
-            <td>{{ product.developers[1] }}</td>
+            {{ product.developers[1] }}
           </tr>
           <tr>
-            <td>{{ product.developers[2] }}</td>
+            {{ product.developers[2] }}
           </tr>
           <tr>
-            <td>{{ product.developers[3] }}</td>
+            {{ product.developers[3] }}
           </tr>
           <tr>
-            <td>{{ product.developers[4] }}</td>
+            {{ product.developers[4] }}
           </tr>
         </td>
         <td>{{ product.startDate}}</td>
         <td>{{ product.methodology}}</td>
         <td>{{ product.location}}</td>
         <td><button @click="openEditModal(product.productId)">Edit</button></td>
-        <!-- ... other cells ... -->
       </tr>
       <tr><br></tr>
       <tr>
-        <td>Total Product Amount:</td>
-        <td>{{ count }}</td>
+        Total Product Amount: {{ count }}
+
       </tr>
     </table>
 
   
     <!-- Modal form for editing a product --> 
-
     <edit-product-modal
     :is-open="isEditModalOpen"
     :save-edit="saveEdit"
@@ -131,19 +129,20 @@ export default {
       this.isModalOpen = true;
     },
     openEditModal(productId) {
-      console.log(productId)
       // Find the product in the array based on productId
       const productToEdit = this.products.find(product => product.productId === productId);
 
-      console.log("producttoEdit",productToEdit);
       // Set the editedProduct to the found product
       this.editedProduct = { ...productToEdit };
 
       this.isEditModalOpen = true;
     },
+
     closeModal() {
       this.isModalOpen = false;
+      this.isEditModalOpen = false;
     },
+    
 
     addDeveloper() {
       const newDeveloperName = ["developer1", "developer2", "developer3","developer4","developer5"]; 
@@ -203,13 +202,61 @@ export default {
       .catch(error => {
         console.error('Error editing product:', error);
       });
-    },
-
-    
-
-    
-      
+    },  
   },
 
 };
 </script>
+
+<style>
+  #app {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Helvetica, sans-serif;
+}
+
+table{
+border-collapse:collapse;
+border:1px solid black;
+color: black;
+background-color:rgb(238, 238, 249);
+margin: 10px;
+font-family: Helvetica, sans-serif;
+}
+
+table td{
+border:1px solid black;
+padding: 5px;
+}
+
+button {
+  border: 2px solid lightgreen;
+  border-radius: 2px;
+  background-color: rgb(104, 223, 104);
+  font-family: Helvetica, sans-serif;
+  color: grey;
+
+}
+
+button:hover{
+  background-color:rgb(184, 238, 184)
+}
+
+#addProductBtn {
+  margin: 10px;
+}
+
+
+
+</style>
