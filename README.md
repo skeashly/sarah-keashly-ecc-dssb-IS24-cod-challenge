@@ -43,7 +43,9 @@ This script uses the Faker library to generate random product information, inclu
 # Sarah Keashly ECC DSSB IS24 Code Challenge - Frontend
 
 ## Description
-This respository contains the frontend code for the Sarah Keashly ECC DSSB IS24 Code Challenge. The frontend is built out with Vue.js(v2) framework with components for both add and edit modals. The table component was left in the app.vue file. With more time, I would have created a better looking UI with CSS.  I also want to note that with more time I would have refactored the add and edit modals into one component using v-if to separate out whether or not the component was for the edit or add, however I felt that a working product with Swagger documentation and testing on all endpoints was something I wanted to finish for you.     
+This respository contains the frontend code for the Sarah Keashly ECC DSSB IS24 Code Challenge. The frontend is built out with Vue.js(v2) framework with components for both add and edit modals. The table component was left in the app.vue file. With more time, I would have created a better looking UI with CSS.  I also want to note that with more time I would have refactored the add and edit modals into one component using v-if to separate out whether or not the component was for the edit or add, however I felt that a working product with Swagger documentation and testing on all endpoints was something I wanted to finish for you.
+
+I was unable to get to the two bonus stories, however would have loved to try to tackle them and might just in the future to complete the whole exercise on my own time. 
 
 ## Prerequisites
 Before you begin, ensure you have the following installed:
